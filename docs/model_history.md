@@ -55,3 +55,23 @@ Selected unified model: **Logistic Regression**
 - OOF macro F1: 91.28%
 
 A fresh unified live certification is the next numeric milestone.
+
+
+## Live Prediction Notebook
+
+The notebook [../notebooks/live_predict.ipynb](../notebooks/live_predict.ipynb) preserves the earlier live A/B/C diagnostic workflow.
+
+It includes:
+- loading `live_test_raw_data.csv` with 30 live recordings and 600 raw sensor values per trial
+- loading the saved A/B/C Random Forest model and metadata
+- reproducing saved predictions and probabilities
+- isolating A trials misclassified as C
+- comparing correct-A, failed-A, and C sensor trajectories
+- channel-level Random Forest feature-importance analysis
+- detection of unusually large sample-to-sample jumps
+- timing-robust 54-feature summaries using nine statistics across six channels
+- PCA visualization of live A/B/C summary features
+- leave-one-out Random Forest testing of the 54-feature representation
+- feature-importance analysis for the timing-robust summaries
+
+This notebook is part of the experimental history that motivated the later segmented 216-feature representation.
