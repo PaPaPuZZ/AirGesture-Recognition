@@ -11,13 +11,17 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
-DATA_FILE="dl_retraining_140_combined_raw_data.csv"
-MODEL_FILE="dl_retrained_140_temporal_best_model.pkl"
-METADATA_FILE="dl_retrained_140_temporal_metadata.json"
-COMPARISON_FILE="dl_retrained_140_temporal_model_comparison.csv"
-CV_PREDICTIONS_FILE="dl_retrained_140_temporal_cv_predictions.csv"
-CONFUSION_FILE="dl_retrained_140_temporal_confusion_matrix.csv"
-SUMMARY_FILE="dl_retrained_140_temporal_training_summary.txt"
+REPO_ROOT = Path(__file__).resolve().parents[2]
+(REPO_ROOT / "models").mkdir(parents=True, exist_ok=True)
+(REPO_ROOT / "results/letters").mkdir(parents=True, exist_ok=True)
+
+DATA_FILE=REPO_ROOT / "data/letters/dl_retraining_140_combined_raw_data.csv"
+MODEL_FILE=REPO_ROOT / "models/dl_retrained_140_temporal_best_model.pkl"
+METADATA_FILE=REPO_ROOT / "results/letters/dl_retrained_140_temporal_metadata.json"
+COMPARISON_FILE=REPO_ROOT / "results/letters/dl_retrained_140_temporal_model_comparison.csv"
+CV_PREDICTIONS_FILE=REPO_ROOT / "results/letters/dl_retrained_140_temporal_cv_predictions.csv"
+CONFUSION_FILE=REPO_ROOT / "results/letters/dl_retrained_140_temporal_confusion_matrix.csv"
+SUMMARY_FILE=REPO_ROOT / "results/letters/dl_retrained_140_temporal_training_summary.txt"
 
 CLASSES=list("DEFGHIJKL")
 NUM_SAMPLES=100
