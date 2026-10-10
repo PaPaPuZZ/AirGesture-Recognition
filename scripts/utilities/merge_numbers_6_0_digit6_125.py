@@ -45,17 +45,13 @@ import pandas as pd
 # FILES
 # ============================================================
 
-BASE_FILE = (
-    "numbers_6_0_105_combined_training_raw_data.csv"
-)
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DATA_DIR = REPO_ROOT / "data/numbers"
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-DIGIT6_FILE = (
-    "digit6_targeted_remediation_20_raw_data.csv"
-)
-
-OUTPUT_FILE = (
-    "numbers_6_0_125_combined_training_raw_data.csv"
-)
+BASE_FILE = DATA_DIR / "numbers_6_0_105_combined_training_raw_data.csv"
+DIGIT6_FILE = DATA_DIR / "digit6_targeted_remediation_20_raw_data.csv"
+OUTPUT_FILE = DATA_DIR / "numbers_6_0_125_combined_training_raw_data.csv"
 
 
 # ============================================================
