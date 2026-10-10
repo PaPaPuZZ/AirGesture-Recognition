@@ -66,33 +66,26 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+(REPO_ROOT / "models").mkdir(parents=True, exist_ok=True)
+(REPO_ROOT / "results/numbers").mkdir(parents=True, exist_ok=True)
+
+
 # ============================================================
 # FILES
 # ============================================================
 
-DATA_FILE = (
-    "numbers_0_9_combined_training_raw_data.csv"
-)
+DATA_FILE = REPO_ROOT / "data/numbers/numbers_0_9_combined_training_raw_data.csv"
 
-MODEL_FILE = (
-    "mpu6050_numbers_0_9_best_model.pkl"
-)
+MODEL_FILE = REPO_ROOT / "models/mpu6050_numbers_0_9_best_model.pkl"
 
-COMPARISON_FILE = (
-    "numbers_0_9_model_comparison.csv"
-)
+COMPARISON_FILE = REPO_ROOT / "results/numbers/numbers_0_9_model_comparison.csv"
 
-OOF_FILE = (
-    "numbers_0_9_oof_predictions.csv"
-)
+OOF_FILE = REPO_ROOT / "results/numbers/numbers_0_9_oof_predictions.csv"
 
-CONFUSION_FILE = (
-    "numbers_0_9_oof_confusion_matrix.csv"
-)
+CONFUSION_FILE = REPO_ROOT / "results/numbers/numbers_0_9_oof_confusion_matrix.csv"
 
-SUMMARY_FILE = (
-    "numbers_0_9_training_summary.txt"
-)
+SUMMARY_FILE = REPO_ROOT / "results/numbers/numbers_0_9_training_summary.txt"
 
 
 # ============================================================
