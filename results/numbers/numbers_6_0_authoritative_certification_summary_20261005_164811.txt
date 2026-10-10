@@ -1,0 +1,15 @@
+NUMBERS 6-0 AUTHORITATIVE CERTIFICATION
+============================================================
+Model: RBF SVM
+Feature pipeline: 4 segments x 6 channels x 9 features = 216
+Overall: 13/25
+Accuracy: 52.00%
+
+6: 5/5 (100.0%) | mean confidence 55.5%
+7: 4/5 (80.0%) | mean confidence 58.2%
+8: 3/5 (60.0%) | mean confidence 39.5%
+9: 1/5 (20.0%) | mean confidence 40.5%
+0: 0/5 (0.0%) | mean confidence 45.0%
+
+Raw data: numbers_6_0_authoritative_certification_raw_20261005_164811.csv
+Results: numbers_6_0_authoritative_certification_results_20261005_164811.csv

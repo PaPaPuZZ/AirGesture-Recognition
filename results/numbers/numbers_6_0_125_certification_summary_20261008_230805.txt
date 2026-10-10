@@ -1,0 +1,15 @@
+NUMBERS 6-0 125-MODEL CERTIFICATION
+============================================================
+Model: Logistic Regression
+Training rows: 125
+Overall: 20/25
+Accuracy: 80.00%
+
+6: 5/5 (100.0%) | mean confidence 96.4%
+7: 3/5 (60.0%) | mean confidence 68.5%
+8: 3/5 (60.0%) | mean confidence 62.4%
+9: 5/5 (100.0%) | mean confidence 85.6%
+0: 4/5 (80.0%) | mean confidence 71.9%
+
+Raw data: numbers_6_0_125_certification_raw_20261008_230805.csv
+Results: numbers_6_0_125_certification_results_20261008_230805.csv

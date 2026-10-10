@@ -1,0 +1,32 @@
+D-L replacement temporal model training
+Dataset: dl_retraining_final_training_raw_data.csv
+Recordings: 90 (10/class)
+Input: 100 samples x 6 channels
+Features: 216 (4 temporal segments x 6 channels x 9 statistics)
+Selected model: RBF SVM
+Mean CV accuracy: 0.9556
+OOF accuracy: 0.9556
+OOF macro F1: 0.9563
+
+OUT-OF-FOLD CLASSIFICATION REPORT
+              precision    recall  f1-score   support
+
+           D      1.000     1.000     1.000        10
+           E      1.000     1.000     1.000        10
+           F      0.900     0.900     0.900        10
+           G      1.000     1.000     1.000        10
+           H      1.000     0.800     0.889        10
+           I      0.750     0.900     0.818        10
+           J      1.000     1.000     1.000        10
+           K      1.000     1.000     1.000        10
+           L      1.000     1.000     1.000        10
+
+    accuracy                          0.956        90
+   macro avg      0.961     0.956     0.956        90
+weighted avg      0.961     0.956     0.956        90
+
+
+IMPORTANT:
+This creates a NEW replacement candidate.
+It does not overwrite the old frozen D-L model.
+Run a fresh live holdout before promoting this candidate.

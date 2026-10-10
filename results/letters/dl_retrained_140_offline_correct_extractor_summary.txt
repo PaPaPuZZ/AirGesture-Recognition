@@ -1,0 +1,47 @@
+D-L OFFLINE HOLDOUT REVALIDATION
+==============================================================================
+Model: dl_retrained_140_temporal_best_model.pkl
+Holdout: dl_retrained_140_final_holdout_raw.csv
+Exact training extractor: 4 segments x 6 channels x 9 features = 216
+Overall accuracy: 21/45 (46.67%)
+Balanced accuracy: 46.67%
+Macro F1: 38.15%
+
+Per-class accuracy:
+D: 100.00%
+E: 100.00%
+F: 80.00%
+G: 60.00%
+H: 40.00%
+I: 0.00%
+J: 0.00%
+K: 0.00%
+L: 40.00%
+
+Average correct-class probability:
+D: 58.63%
+E: 80.13%
+F: 47.83%
+G: 26.93%
+H: 35.02%
+I: 9.79%
+J: 6.98%
+K: 7.65%
+L: 24.98%
+
+Classification report:
+              precision    recall  f1-score   support
+
+           D      0.625     1.000     0.769         5
+           E      0.357     1.000     0.526         5
+           F      0.364     0.800     0.500         5
+           G      0.750     0.600     0.667         5
+           H      0.400     0.400     0.400         5
+           I      0.000     0.000     0.000         5
+           J      0.000     0.000     0.000         5
+           K      0.000     0.000     0.000         5
+           L      1.000     0.400     0.571         5
+
+    accuracy                          0.467        45
+   macro avg      0.388     0.467     0.382        45
+weighted avg      0.388     0.467     0.382        45

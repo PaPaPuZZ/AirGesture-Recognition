@@ -1,0 +1,38 @@
+FULL NUMBERS 0-9 TRAINING SUMMARY
+=================================================================
+Training file: numbers_0_9_combined_training_raw_data.csv
+Rows: 215
+Class counts: {'0': 30, '1': 10, '2': 20, '3': 20, '4': 20, '5': 20, '6': 35, '7': 15, '8': 20, '9': 25}
+Feature architecture: 4 segments x 6 channels x 9 features = 216
+Feature definition: ['mean', 'std', 'min', 'max', 'range', 'rms', 'avg_abs_change', 'max_abs_change', 'total_movement']
+
+MODEL COMPARISON
+              model  mean_cv_accuracy  mean_cv_balanced_accuracy  mean_cv_macro_f1  oof_accuracy  oof_balanced_accuracy  oof_macro_f1
+Logistic Regression          0.906977                   0.909095          0.911210      0.906977               0.909095      0.912770
+            RBF SVM          0.897674                   0.895095          0.897969      0.897674               0.895095      0.901313
+      Random Forest          0.883721                   0.880571          0.886373      0.883721               0.880571      0.890599
+
+SELECTED MODEL
+Logistic Regression
+OOF accuracy: 0.9070
+OOF balanced accuracy: 0.9091
+OOF macro F1: 0.9128
+
+CLASSIFICATION REPORT
+              precision    recall  f1-score   support
+
+           0     0.9259    0.8333    0.8772        30
+           1     1.0000    0.9000    0.9474        10
+           2     1.0000    1.0000    1.0000        20
+           3     0.9500    0.9500    0.9500        20
+           4     0.8636    0.9500    0.9048        20
+           5     0.8421    0.8000    0.8205        20
+           6     0.8421    0.9143    0.8767        35
+           7     0.9333    0.9333    0.9333        15
+           8     0.9444    0.8500    0.8947        20
+           9     0.8889    0.9600    0.9231        25
+
+    accuracy                         0.9070       215
+   macro avg     0.9190    0.9091    0.9128       215
+weighted avg     0.9092    0.9070    0.9068       215
+

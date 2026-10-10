@@ -1,0 +1,33 @@
+D-L RETRAINED 140 MODEL - FRESH 45-RECORDING HOLDOUT
+Model: dl_retrained_140_temporal_best_model.pkl
+Accuracy: 5/45 (11.11%)
+Balanced accuracy: 11.11%
+Macro F1: 2.22%
+
+Per-class accuracy:
+D: 5/5 (100.00%)
+E: 0/5 (0.00%)
+F: 0/5 (0.00%)
+G: 0/5 (0.00%)
+H: 0/5 (0.00%)
+I: 0/5 (0.00%)
+J: 0/5 (0.00%)
+K: 0/5 (0.00%)
+L: 0/5 (0.00%)
+
+Average correct-class probability:
+D: 35.63%
+E: 24.80%
+F: 4.28%
+G: 5.27%
+H: 8.61%
+I: 10.57%
+J: 2.61%
+K: 2.49%
+L: 5.74%
+
+REQUIRES ADDITIONAL DIAGNOSIS: do not replace the old frozen model yet.
+
+IMPORTANT:
+No holdout recording was added to training.
+The model was not retrained by this validator.

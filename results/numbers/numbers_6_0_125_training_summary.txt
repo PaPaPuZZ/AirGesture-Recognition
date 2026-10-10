@@ -1,0 +1,33 @@
+NUMBERS 6-0 — 125 RECORDING TRAINING SUMMARY
+=================================================================
+Training file: numbers_6_0_125_combined_training_raw_data.csv
+Rows: 125
+Class counts: {'0': 30, '6': 35, '7': 15, '8': 20, '9': 25}
+Feature architecture: 4 segments x 6 channels x 9 features = 216
+Feature definition: ['mean', 'std', 'min', 'max', 'range', 'rms', 'avg_abs_change', 'max_abs_change', 'total_movement']
+
+MODEL COMPARISON
+              model  mean_cv_accuracy  mean_cv_balanced_accuracy  mean_cv_macro_f1  oof_accuracy  oof_balanced_accuracy  oof_macro_f1
+Logistic Regression             0.896                   0.896476          0.893920         0.896               0.896476      0.894334
+            RBF SVM             0.896                   0.886857          0.890616         0.896               0.886857      0.894854
+      Random Forest             0.880                   0.876476          0.880246         0.880               0.876476      0.884017
+
+SELECTED MODEL
+Logistic Regression
+OOF accuracy: 0.8960
+OOF balanced accuracy: 0.8965
+OOF macro F1: 0.8943
+
+CLASSIFICATION REPORT
+              precision    recall  f1-score   support
+
+           0     0.8750    0.9333    0.9032        30
+           6     0.9118    0.8857    0.8986        35
+           7     0.8750    0.9333    0.9032        15
+           8     0.8500    0.8500    0.8500        20
+           9     0.9565    0.8800    0.9167        25
+
+    accuracy                         0.8960       125
+   macro avg     0.8937    0.8965    0.8943       125
+weighted avg     0.8976    0.8960    0.8961       125
+
