@@ -48,7 +48,10 @@ import serial
 # CONFIGURATION
 # ============================================================
 
-MODEL_FILE = "mpu6050_numbers_0_9_best_model.pkl"
+REPO_ROOT = Path(__file__).resolve().parents[2]
+RESULTS_DIR = REPO_ROOT / "results/numbers"
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+MODEL_FILE = REPO_ROOT / "models/mpu6050_numbers_0_9_best_model.pkl"
 
 BAUD_RATE = 115200
 
@@ -790,21 +793,30 @@ def main():
     )
 
     raw_file = (
-        "numbers_0_9_certification_raw_"
-        + timestamp
-        + ".csv"
+        RESULTS_DIR
+        / (
+            "numbers_0_9_certification_raw_"
+            + timestamp
+            + ".csv"
+        )
     )
 
     results_file = (
-        "numbers_0_9_certification_results_"
-        + timestamp
-        + ".csv"
+        RESULTS_DIR
+        / (
+            "numbers_0_9_certification_results_"
+            + timestamp
+            + ".csv"
+        )
     )
 
     summary_file = (
-        "numbers_0_9_certification_summary_"
-        + timestamp
-        + ".txt"
+        RESULTS_DIR
+        / (
+            "numbers_0_9_certification_summary_"
+            + timestamp
+            + ".txt"
+        )
     )
 
     raw_rows = []
