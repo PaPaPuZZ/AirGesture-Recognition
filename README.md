@@ -133,7 +133,9 @@ Earlier exploration included:
 - Confusion matrices and train/test analysis
 - Migration toward the current 216-feature classical ML pipeline
 
-The original LSTM notebook is now archived at [notebooks/BuildTrainLSTM.ipynb](notebooks/BuildTrainLSTM.ipynb). It documents the 60/40 stratified train/test split, label encoding, standardization, reshaping to 100 × 6 sequences, a stacked LSTM architecture, test evaluation, normalized confusion matrix generation, and saved model/scaler/encoder artifacts.
+The original LSTM notebook is archived at [notebooks/BuildTrainLSTM.ipynb](notebooks/BuildTrainLSTM.ipynb). It documents the 60/40 stratified train/test split, label encoding, standardization, reshaping to 100 × 6 sequences, a stacked LSTM architecture, test evaluation, normalized confusion matrix generation, and saved model/scaler/encoder artifacts.
+
+The original live-prediction analysis notebook is archived at [notebooks/live_predict.ipynb](notebooks/live_predict.ipynb). It reproduces A/B/C Random Forest predictions from 600 raw IMU values, analyzes A→C misclassifications, visualizes channel trajectories and feature importance, checks sample-to-sample jumps, and explores timing-robust 54-feature summaries, PCA, and leave-one-out validation.
 
 ## Repository Structure
 
