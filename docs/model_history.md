@@ -2,10 +2,24 @@
 
 ## Early Anaconda / TinyML Work
 
-Earlier work included:
+The original notebook is preserved at [../notebooks/BuildTrainLSTM.ipynb](../notebooks/BuildTrainLSTM.ipynb).
+
+The notebook includes:
+- a 60/40 stratified train/test split
+- LabelEncoder-based target encoding
+- StandardScaler preprocessing
+- reshaping into 100 time steps × 6 IMU channels
+- a stacked LSTM with 64-unit and 32-unit recurrent layers
+- dropout, batch normalization, and a dense softmax classifier
+- test-set accuracy evaluation
+- classification report generation
+- normalized confusion matrix visualization
+- saving the trained Keras model, scaler, and label encoder
+- later loading those saved artifacts for prediction on recorded gestures
+
+Earlier work also included:
 - Kaggle air-writing dataset exploration
 - Neuton TinyML experiments
-- LSTM models in Anaconda/Jupyter
 - Random Forest experiments
 - confusion matrices
 - train/test split evaluation
