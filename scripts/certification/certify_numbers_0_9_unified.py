@@ -1223,13 +1223,13 @@ def main():
 
     summary.append(
         "\nRaw data: "
-        + raw_file
+        + str(raw_file)
         + "\n"
     )
 
     summary.append(
         "Results: "
-        + results_file
+        + str(results_file)
         + "\n"
     )
 
