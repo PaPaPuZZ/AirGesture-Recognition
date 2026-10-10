@@ -133,7 +133,7 @@ Earlier exploration included:
 - Confusion matrices and train/test analysis
 - Migration toward the current 216-feature classical ML pipeline
 
-The original notebooks are not yet in the repository. See [notebooks/README.md](notebooks/README.md) for the planned notebook archive.
+The original LSTM notebook is now archived at [notebooks/BuildTrainLSTM.ipynb](notebooks/BuildTrainLSTM.ipynb). It documents the 60/40 stratified train/test split, label encoding, standardization, reshaping to 100 × 6 sequences, a stacked LSTM architecture, test evaluation, normalized confusion matrix generation, and saved model/scaler/encoder artifacts.
 
 ## Repository Structure
 
