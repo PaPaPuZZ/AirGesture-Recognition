@@ -77,4 +77,43 @@ Per-class recall:
 - 8: 85.0%
 - 9: 96.0%
 
-Next: fresh unified 30-trial 0–9 certification.
+## Unified 0–9 Fresh Live Certification
+
+Fresh holdout using the 215-recording unified Logistic Regression model:
+
+```text
+Overall: 15/30 = 50%
+
+0: 0/3
+1: 2/3
+2: 2/3
+3: 1/3
+4: 0/3
+5: 2/3
+6: 0/3
+7: 2/3
+8: 3/3
+9: 3/3
+```
+
+Mean winning confidence remained high for several incorrect classes, including:
+- 0: 67.6%
+- 3: 91.7%
+- 4: 61.3%
+- 6: 63.6%
+
+This result shows a substantial gap between random/stratified cross-validation and fresh live generalization. The numeric pipeline therefore remains under active iteration.
+
+## Next Iteration Strategy
+
+The next phase will increase gesture diversity rather than only adding examples for one failed class at a time.
+
+Planned approach:
+- collect additional examples for every digit 0–9
+- deliberately vary size, speed, orientation, start position, and natural drawing style
+- keep each collection session separately identifiable
+- preserve all fresh certification sets as holdout evidence rather than merging them into training
+- retrain and recertify after each meaningful dataset expansion
+- later add additional participants and evaluate participant-independent generalization
+
+The long-term goal is a model that generalizes across both gesture variation and different users.
