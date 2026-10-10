@@ -37,17 +37,13 @@ import pandas as pd
 # FILES
 # ============================================================
 
-FILE_1_5 = (
-    "numbers_1_5_50ms_training_raw_data.csv"
-)
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DATA_DIR = REPO_ROOT / "data/numbers"
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-FILE_6_0 = (
-    "numbers_6_0_125_combined_training_raw_data.csv"
-)
-
-OUTPUT_FILE = (
-    "numbers_0_9_combined_training_raw_data.csv"
-)
+FILE_1_5 = DATA_DIR / "numbers_1_5_50ms_training_raw_data.csv"
+FILE_6_0 = DATA_DIR / "numbers_6_0_125_combined_training_raw_data.csv"
+OUTPUT_FILE = DATA_DIR / "numbers_0_9_combined_training_raw_data.csv"
 
 
 # ============================================================
