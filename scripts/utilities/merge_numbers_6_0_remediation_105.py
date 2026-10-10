@@ -52,17 +52,13 @@ import pandas as pd
 # FILES
 # ============================================================
 
-ORIGINAL_FILE = (
-    "numbers_6_0_5second_training_raw_data.csv"
-)
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DATA_DIR = REPO_ROOT / "data/numbers"
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-REMEDIATION_FILE = (
-    "numbers_6_0_targeted_remediation_raw_data.csv"
-)
-
-OUTPUT_FILE = (
-    "numbers_6_0_105_combined_training_raw_data.csv"
-)
+ORIGINAL_FILE = DATA_DIR / "numbers_6_0_5second_training_raw_data.csv"
+REMEDIATION_FILE = DATA_DIR / "numbers_6_0_targeted_remediation_raw_data.csv"
+OUTPUT_FILE = DATA_DIR / "numbers_6_0_105_combined_training_raw_data.csv"
 
 
 # ============================================================
