@@ -1,0 +1,14 @@
+name: airgesture
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - jupyter
+  - notebook
+  - pip
+  - pip:
+      - pyserial
