@@ -1,84 +1,114 @@
-# MPU6050 Orientation and Axis Robustness Study
+# MPU6050 Orientation and Board-Pose Robustness Study
 
 ## Goal
 
-Determine whether the current IMU recognition pipeline remains accurate when the pen is held or used in different orientations and writing planes, and determine which physical sensor-axis alignment is best for the final pen PCB.
+Determine whether the IMU recognition pipeline remains accurate when the MPU6050 is installed or used in different physical poses, and determine which orientations are realistic for the final pen design.
 
-These are two separate experiments and should not be mixed within one collection session.
+The first three collected datasets are **board-pose conditions**, not true X-, Y-, and Z-long-axis alignments.
 
-## Experiment A — Usage Orientation Robustness
+## Collected Board-Pose Conditions
 
-Keep the MPU6050 mounted in the same physical orientation relative to the pen. Change only how the pen is held or the plane in which the gesture is drawn.
+| Original label | Actual physical setup | Normalized orientation ID | Normalized mount ID |
+|---|---|---|---|
+| `AXIS_X_LONG` | MPU6050 board mounted vertically/on edge | `BOARD_FACE_VERTICAL` | `MOUNT_FACE_VERTICAL` |
+| `AXIS_Y_LONG` | MPU6050 board horizontal and right-side up | `BOARD_FACE_UP` | `MOUNT_FACE_UP` |
+| `AXIS_Z_LONG` | MPU6050 board horizontal and upside down | `BOARD_FACE_DOWN` | `MOUNT_FACE_DOWN` |
 
-Recommended initial conditions:
+All three datasets remain useful. They test whether the same digit can be recognized when gravity and motion project differently onto the MPU6050 axes.
 
-| Orientation ID | Description |
-|---|---|
-| `O0_NEUTRAL_FRONT` | Current neutral grip; writing in the normal front-facing plane |
-| `O1_ROLL_CW_90` | Pen rolled approximately 90° clockwise about its long axis |
-| `O2_ROLL_CCW_90` | Pen rolled approximately 90° counterclockwise |
-| `O3_HORIZONTAL` | Gesture drawn approximately parallel to a tabletop |
-| `O4_DIAGONAL_45` | Gesture drawn in an approximately 45° diagonal plane |
+The raw source CSVs must remain unchanged. Use:
 
-For the first pilot, collect 5 trials per digit for each of the first four conditions:
-
-```text
-4 orientations × 10 digits × 5 trials = 200 recordings
+```bash
+python scripts/utilities/normalize_number_orientation_metadata.py
 ```
 
-## Experiment B — Sensor Mount / Axis Alignment
+to create corrected copies under:
 
-Keep the writing plane and user grip as consistent as possible. Change only how the MPU6050 is physically aligned relative to the pen body.
+```text
+data/numbers/orientation_study/normalized/
+```
 
-Suggested mount configurations:
+The normalized copies preserve the original labels in `original_*` metadata columns.
 
-| Mount ID | Pen-long-axis alignment |
+## Important Interpretation Rule
+
+The MPU6050 always records all six channels:
+
+```text
+Ax, Ay, Az, Gx, Gy, Gz
+```
+
+Rotating or flipping the board changes how gravity and physical pen motion project onto those channels. It does not cause the sensor to measure only one axis.
+
+## True Axis-Alignment Study, If Needed Later
+
+A true pen-axis study would require the physical MPU6050 axes to be aligned with the pen shaft:
+
+| Mount ID | Required physical alignment |
 |---|---|
-| `MOUNT_X_LONG` | MPU6050 X axis aligned with pen length |
-| `MOUNT_Y_LONG` | MPU6050 Y axis aligned with pen length |
-| `MOUNT_Z_LONG` | MPU6050 Z axis aligned with pen length |
+| `MOUNT_X_LONG` | MPU6050 +X direction parallel to the pen shaft |
+| `MOUNT_Y_LONG` | MPU6050 +Y direction parallel to the pen shaft |
+| `MOUNT_Z_LONG` | MPU6050 +Z direction parallel to the pen shaft |
 
-This experiment helps decide how the sensor should be oriented on the final PCB.
+Because Z is perpendicular to the board face, a true `Z_LONG` configuration generally requires the board to be mounted on edge with its face perpendicular to the pen shaft.
+
+Only collect these true axis-alignment conditions if they can be mounted securely and could realistically fit inside the final pen.
+
+## Current Evaluation
+
+Run:
+
+```bash
+python scripts/training/train_numbers_board_pose_robust.py
+```
+
+The training script compares:
+
+1. `raw_axis_216`
+   - the current 4-segment × 6-channel × 9-statistic representation;
+2. `magnitude_72`
+   - acceleration magnitude and gyroscope magnitude only;
+3. `raw_plus_magnitude_288`
+   - the original raw-axis features plus magnitude features.
+
+For each feature set, the script evaluates:
+
+- Logistic Regression;
+- RBF SVM;
+- Random Forest;
+- ordinary stratified cross-validation;
+- leave-one-board-pose-out validation.
+
+The primary metric is leave-one-board-pose-out balanced accuracy, because the deployment question is whether the pen can recognize a gesture in a pose that was not used for training.
 
 ## Metadata
 
-Every recording should preserve:
+Every future orientation or mount recording should preserve:
 
 - `participant_id`
 - `session_id`
 - `dominant_hand`
+- `study_type`
 - `orientation_id`
 - `writing_plane`
 - `sensor_mount_id`
 - `pen_axis_alignment`
-- approximate `roll_deg`, `pitch_deg`, and `yaw_deg`
+- approximate `roll_deg`, `pitch_deg`, and `yaw_deg` only when known
 - `actual`
 - `trial_number`
 
-## Evaluation
-
-Do not rely only on randomly shuffled cross-validation.
-
-Use:
-
-1. ordinary stratified CV as a reference;
-2. GroupKFold by `orientation_id`;
-3. leave-one-orientation-out evaluation;
-4. later, GroupKFold by `participant_id` when other users contribute data.
-
-The main deployment question is whether a model trained on several orientations can recognize a held-out orientation.
-
-## Model Development Sequence
-
-1. Evaluate the current 216-feature model unchanged.
-2. Add multi-orientation training data.
-3. If held-out-orientation performance remains poor, compare:
-   - acceleration magnitude and gyro magnitude features;
-   - start-orientation normalization;
-   - gravity subtraction / orientation-normalized acceleration;
-   - random 3D rotation augmentation;
-   - a small 1D CNN or TCN on the raw 100 × 6 sequence.
+Do not invent roll, pitch, or yaw values when they were not measured.
 
 ## Collection Rule
 
-Change only one experimental variable per session. For example, do not simultaneously rotate the sensor mount and change the writing plane, because the result would not reveal which change affected performance.
+Change only one experimental variable per session. Do not simultaneously change the sensor mount, writing plane, grip, and participant if the goal is to isolate orientation effects.
+
+## Longer-Term Model Development
+
+If board-pose generalization remains weak, compare:
+
+- acceleration and gyroscope magnitude features;
+- start-orientation normalization;
+- gravity subtraction;
+- rotation augmentation;
+- a small 1D CNN or temporal convolutional network on the raw 100 × 6 sequence.
